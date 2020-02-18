@@ -6,11 +6,11 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:58:06 by poatmeal          #+#    #+#             */
-/*   Updated: 2020/02/18 11:06:57 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/18 14:53:31 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/map.h"
+#include "includes/fdf.h"
 
 void	*ft_clean(t_data **map)
 {
@@ -50,9 +50,8 @@ int		main(int argc, char **argv)
 {
 	int		fd;
 	t_map	map;
-	char	*line;
+	char	line;
 
-	line = NULL;
 	if (!check_fdf(argv[1], argc))
 		return (0);
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
@@ -60,12 +59,12 @@ int		main(int argc, char **argv)
 		ft_putstr("File is not found");
 		return (0);
 	}
-	if (!parser_fdf(fd, &map, argv[1], line))
+	if (!parser_fdf(fd, &map, argv[1], &line))
 	{
 		clean_fdf(fd, &map);
 		return (0);
 	}
-	ft_putstr("devachki vse klassno\n");
+	image_init(&map);
 	ft_clean((&map)->map);
 	return (0);
 }
