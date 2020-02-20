@@ -6,7 +6,7 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:48:48 by poatmeal          #+#    #+#             */
-/*   Updated: 2020/02/18 18:17:35 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:05:35 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int			check_line(char *line, t_map *map, size_t k, size_t n)
 		else if (line[i] == ' ' && i++ > -1)
 			c = 0;
 		else if (line[i] == 44 && line[i + 1] == 48 && line[i + 2] == 'x')
-			c = check_symb(&line[i + 3], map, k, n);
+			c = check_symb(&line[i + 3], map, k, n - 1);
 		if (c == (-1))
 			return (0);
 		i = i + c;

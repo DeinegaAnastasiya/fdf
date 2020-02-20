@@ -6,11 +6,11 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:13:36 by rstarfir          #+#    #+#             */
-/*   Updated: 2020/02/18 18:45:30 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:03:58 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "includes/fdf.h"
 
 int		ft_close(void)
 {
@@ -26,55 +26,56 @@ int		key_press(int keycode, void *param)
 	return (0);
 }
 
-/*int		new_(t_map *map)
+t_point		trans(t_point dot)
 {
-	
-}*/
+	int		new_x;
+	int		new_y;
+	int		n;
+
+	n = 30;
+	new_x = dot.x * cos(0.46373398) - dot.y * sin(0.46373398);
+	new_y = -dot.y * sin(0.46373398) + dot.x * cos(0.46373398);
+	/*dot.x = 900 + dot.x * n;
+	dot.y = 350 + dot.y * n;*/
+	dot.x = 900 + new_x; //* n;
+	dot.y = 350 + new_y; //* n;
+	return (dot);
+}
 
 void	draw_matrix(t_map *map, t_mlx *tmp)
 {
 	t_point ps;
 	t_point pf;
-	int		n;
 	int		i;
 	int		j;
 
 	i = 0;
-	j = 0;
-	n = 20;
-	ps.y = 270;
-	pf.y = ps.y;
-	while (((pf.y - 270) < (map->y * n)) && (i < map->y))
+	ps.y = i;
+	pf.y = i;
+	while (i < map->y)
 	{
 		j = 0;
-		ps.x = 480;
-		pf.x = ps.x + n;
-		while (((pf.x - 480) <= (map->x * n)) && (j < map->x))
+		ps.x = j;
+		pf.x = j + 1;
+		while(j < map->x)
 		{
-			printf("1 = %x\n", tmp->img.clr);
-			printf("2 = %x\n", map->map[i][j].color);
-			//pf.z = map->map[i][j].height;
-			if (map->map[i][j].color != -1)
-				tmp->img.clr = map->map[i][j].color;
-			else
-				tmp->img.clr = 0xF07800;
-			printf("3 = %x\n", tmp->img.clr);
-			if ((pf.x - 480) < (map->x * n))
-				drawline(tmp, &ps, &pf);
-				//drawline(tmp, trans(&ps), trans(&pf));
-			pf.x = ps.x;
-			pf.y = ps.y + n;
-			if ((pf.y - 270) < (map->y * n))
-				drawline(tmp, &ps, &pf);
-				//drawline(tmp, trans(&ps), trans(&pf));
-			ps.x = ps.x + n;
-			pf.x = pf.x + 2 * n;
-			pf.y = pf.y - n;
+			pf.z = map->map[i][j].height;
+			if (j + 1 < map->x)
+				drawline(tmp, trans(ps), trans(pf));
+				//drawline(tmp, ps, pf);
+			pf.x = j;
+			pf.y = i + 1;
+			if (i + 1 < map->y)
+				drawline(tmp, trans(ps), trans(pf));
+				//drawline(tmp, ps, pf);
 			j++;
+			ps.x = j;
+			pf.x = j + 1;
+			pf.y = i;
 		}
 		i++;
-		ps.y = ps.y + n;
-		pf.y = pf.y + n;
+		ps.y = i;
+		pf.y = i;
 	}
 }
 
