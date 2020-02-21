@@ -6,7 +6,7 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:13:36 by rstarfir          #+#    #+#             */
-/*   Updated: 2020/02/20 17:03:58 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/21 16:16:47 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,28 @@ int		key_press(int keycode, void *param)
 	return (0);
 }
 
-t_point		trans(t_point dot)
+t_point		trans(t_point dot, t_mlx *tmp)
 {
-	int		new_x;
-	int		new_y;
+ 	int		new_x;
+	int		new_y; 
 	int		n;
 
-	n = 30;
-	new_x = dot.x * cos(0.46373398) - dot.y * sin(0.46373398);
-	new_y = -dot.y * sin(0.46373398) + dot.x * cos(0.46373398);
+	n = 10;
+	dot.x = dot.x * n;
+	dot.y = dot.y * n;
+	dot.z = dot.z * n;
+	/*new_x = dot.x * cos(0.46373398) - dot.y * sin(0.46373398);
+	new_y = -dot.y * sin(0.46373398) + dot.x * cos(0.46373398);*/
+ 	new_x = (dot.x - dot.y) * cos(0.46373398);
+	new_y = -dot.z + (dot.x + dot.y) * sin(0.46373398);
+	if (dot.z > 0)
+		tmp->img.clr = 0xFF0000;
+	else
+		tmp->img.clr = 0xFFFFFF;
 	/*dot.x = 900 + dot.x * n;
 	dot.y = 350 + dot.y * n;*/
-	dot.x = 900 + new_x; //* n;
-	dot.y = 350 + new_y; //* n;
+	dot.x = 900 + new_x;
+	dot.y = 550 + new_y;
 	return (dot);
 }
 
@@ -59,15 +68,28 @@ void	draw_matrix(t_map *map, t_mlx *tmp)
 		pf.x = j + 1;
 		while(j < map->x)
 		{
-			pf.z = map->map[i][j].height;
-			if (j + 1 < map->x)
-				drawline(tmp, trans(ps), trans(pf));
+			if (j < map->x - 1)
+			{
+				ps.z = map->map[i][j].height;
+				if (j + 1 < map->x)
+					pf.z = map->map[i][j + 1].height;
+				else
+					pf.z = map->map[i][j].height;
+				drawline(tmp, trans(ps, tmp), trans(pf, tmp));
 				//drawline(tmp, ps, pf);
+			}
 			pf.x = j;
 			pf.y = i + 1;
-			if (i + 1 < map->y)
-				drawline(tmp, trans(ps), trans(pf));
+			if (i < map->y - 1)
+			{
+				ps.z = map->map[i][j].height;
+				if (i + 1 < map->y)
+					pf.z = map->map[i + 1][j].height;
+				else
+					pf.z = map->map[i][j].height;
+				drawline(tmp, trans(ps, tmp), trans(pf, tmp));
 				//drawline(tmp, ps, pf);
+			}
 			j++;
 			ps.x = j;
 			pf.x = j + 1;
