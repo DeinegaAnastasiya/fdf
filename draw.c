@@ -6,7 +6,7 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 20:32:49 by rstarfir          #+#    #+#             */
-/*   Updated: 2020/02/20 16:44:13 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:25:28 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ void	abtuse(t_mlx *tmp, t_point *d, t_point pf, int err)
 {
 	while (d->yi != pf.y)
 	{
-		tmp->img.data[d->yi * WIDTH + d->xi] = tmp->img.clr;
-		tmp->img.data[pf.y * WIDTH + pf.x] = tmp->img.clr;
+		if ((d->xi >= 0) && (d->xi < WIDTH - 1) &&
+		(d->yi >= 0) && (d->yi < HEIGHT - 1))
+			tmp->img.data[d->yi * WIDTH + d->xi] = tmp->img.clr;
+		if ((pf.x >= 0) && (pf.x < WIDTH - 1) &&
+		(pf.y >= 0) && (pf.y < HEIGHT - 1))
+			tmp->img.data[pf.y * WIDTH + pf.x] = tmp->img.clr;
 		err += d->x;
 		if ((err * 2) >= d->y)
 		{
@@ -32,8 +36,12 @@ void	acute(t_mlx *tmp, t_point *d, t_point pf, int err)
 {
 	while (d->xi != pf.x)
 	{
-		tmp->img.data[d->yi * WIDTH + d->xi] = tmp->img.clr;
-		tmp->img.data[pf.y * WIDTH + pf.x] = tmp->img.clr;
+		if ((d->xi >= 0) && (d->xi < WIDTH - 1) &&
+		(d->yi >= 0) && (d->yi < HEIGHT - 1))
+			tmp->img.data[d->yi * WIDTH + d->xi] = tmp->img.clr;
+		if ((pf.x >= 0) && (pf.x < WIDTH - 1) &&
+		(pf.y >= 0) && (pf.y < HEIGHT - 1))
+			tmp->img.data[pf.y * WIDTH + pf.x] = tmp->img.clr;
 		err += d->y;
 		if ((err * 2) >= d->x)
 		{
