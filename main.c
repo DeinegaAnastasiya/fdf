@@ -6,7 +6,7 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:58:06 by poatmeal          #+#    #+#             */
-/*   Updated: 2020/02/26 16:37:11 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/26 19:32:12 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*ft_clean(t_data **map)
 void	clean_fdf(int fd, t_map *map, char *line)
 {
 	ft_putstr("Bad map\n");
-	free (line);
+	free(line);
 	close(fd);
 	map->map = ft_clean(map->map);
 }
@@ -67,6 +67,6 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	image_init(map);
-	//ft_clean(map->map);
+	ft_clean(map->map);
 	return (0);
 }
