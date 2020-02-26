@@ -6,7 +6,7 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 20:36:06 by rstarfir          #+#    #+#             */
-/*   Updated: 2020/02/25 18:03:53 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/26 16:37:40 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct		s_img
 typedef struct 		s_view
 {
 	int				scale;
+	int				iso;
 }					t_view;
 
 
@@ -62,7 +63,7 @@ typedef struct		s_point
 
 void				drawline(t_mlx *tmp, t_point ps, t_point pf);
 int					image_init(t_map *map);
-void				draw_matrix(t_map *map, t_mlx *tmp, t_view *zoom);
+void				draw_matrix(t_map *map, t_mlx *tmp, t_view zoom);
 void				color_init(t_map *map, t_mlx *tmp, int i, int j);
 
 #endif

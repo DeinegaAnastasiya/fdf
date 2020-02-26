@@ -6,7 +6,7 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:58:06 by poatmeal          #+#    #+#             */
-/*   Updated: 2020/02/25 16:46:50 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/26 16:37:11 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ int		check_fdf(char *file, int argc)
 int		main(int argc, char **argv)
 {
 	int		fd;
-	t_map	map;
+	t_map	*map;
 	char	line;
 
+	map = (t_map *)ft_memalloc(sizeof(t_map));
 	if (!check_fdf(argv[1], argc))
 		return (0);
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
@@ -60,12 +61,12 @@ int		main(int argc, char **argv)
 		ft_putstr("File is not found");
 		return (0);
 	}
-	if (!parser_fdf(fd, &map, argv[1], &line))
+	if (!parser_fdf(fd, map, argv[1], &line))
 	{
-		clean_fdf(fd, &map, &line);
+		clean_fdf(fd, map, &line);
 		return (0);
 	}
-	image_init(&map);
-	ft_clean((&map)->map);
+	image_init(map);
+	//ft_clean(map->map);
 	return (0);
 }

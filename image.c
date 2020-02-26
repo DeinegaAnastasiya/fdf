@@ -6,14 +6,14 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 17:13:36 by rstarfir          #+#    #+#             */
-/*   Updated: 2020/02/25 19:25:24 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/26 16:38:33 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fdf.h"
 #include "math.h"
 
-t_point		trans(t_point dot, t_view *zoom)
+t_point		trans(t_point dot, t_view zoom)
 {
 	double		new_x;
 	double		new_y;
@@ -25,10 +25,12 @@ t_point		trans(t_point dot, t_view *zoom)
 	alpha = 1.5708;
 	beta = 0;
 	gama = 0.523599;*/
-	zoom->scale = 35;
-	dot.x = dot.x * zoom->scale;
-	dot.y = dot.y * zoom->scale;
-	dot.z = dot.z * zoom->scale;
+	zoom.scale = 35;
+	new_x = 0.0;
+	new_y = 0.0;
+	dot.x = dot.x * zoom.scale;
+	dot.y = dot.y * zoom.scale;
+	dot.z = dot.z * zoom.scale;
 	/*new_x = cos(alpha) * cos(beta) * dot.x + cos(alpha) * sin(beta) * sin (gama) * dot.y - \
 			sin(alpha) * cos(beta) * dot.y + cos(alpha) * sin(beta) * cos(gama) * dot.z + \
 			sin(alpha) * sin(beta) * dot.z;
@@ -38,25 +40,40 @@ t_point		trans(t_point dot, t_view *zoom)
 	new_z  = -sin(beta) * dot.x + cos(beta) * sin(gama) * dot.y + cos(beta) * cos(gama) * dot.z;
 		new_x = (150 * new_x) / (new_z + 150);
 		new_y = (150 * new_y) / (new_z + 150);*/
-	new_x = (dot.x - dot.y) * cos(0.46373398);
-	new_y = -dot.z + (dot.x + dot.y) * sin(0.46373398);
+	if (zoom.iso == 1)
+	{
+		new_x = (dot.x - dot.y) * cos(0.46373398);
+		new_y = -dot.z + (dot.x + dot.y) * sin(0.46373398);
+	}
+	else if (zoom.iso == 0)
+	{
+		new_x = dot.x;
+		new_y = dot.y;
+	}
 	dot.x = 680 + new_x;
 	dot.y = 470 + new_y;
 	return (dot);
 }
 
-void		draw_matrix(t_map *map, t_mlx *tmp, t_view *zoom)
+/*int			horiz_line(t_map *map, t_mlx *tmp, int i, int j)
+{
+	
+}*/
+
+void		draw_matrix(t_map *map, t_mlx *tmp, t_view zoom)
 {
 	t_point ps;
 	t_point pf;
 	int		i;
-	int		j;
+ 	int		j;
 
 	i = 0;
 	ps.y = i;
 	pf.y = i;
 	while (i < map->y)
 	{
+		/*ps.y = i;
+		pf.y = i;*/
 		j = 0;
 		ps.x = j;
 		pf.x = j + 1;
