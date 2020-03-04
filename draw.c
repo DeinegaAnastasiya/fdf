@@ -6,11 +6,11 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 20:32:49 by rstarfir          #+#    #+#             */
-/*   Updated: 2020/02/25 15:25:28 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/27 11:22:29 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf.h"
+#include "fdf.h"
 
 void	abtuse(t_mlx *tmp, t_point *d, t_point pf, int err)
 {

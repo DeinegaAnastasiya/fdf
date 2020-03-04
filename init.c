@@ -6,11 +6,11 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:30:33 by poatmeal          #+#    #+#             */
-/*   Updated: 2020/02/26 19:31:17 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/27 11:37:56 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf.h"
+#include "fdf.h"
 
 int			key_press(int keycode, t_mlx *tmp)
 {
@@ -41,7 +41,7 @@ int			image_init(t_map *map)
 
 	x = 1;
 	view.iso = 0;
-	view.scale = 35;
+	view.scale = SIZE;
 	tmp.img.clr = 0xF07800;
 	tmp.mlx = mlx_init();
 	tmp.wndw = mlx_new_window(tmp.mlx, WIDTH, HEIGHT, "FDF");

@@ -6,11 +6,11 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 19:20:48 by poatmeal          #+#    #+#             */
-/*   Updated: 2020/02/26 19:21:20 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/27 11:38:18 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf.h"
+#include "fdf.h"
 
 int			ft_close(void)
 {
@@ -22,7 +22,7 @@ void		change_pro1(int keycode, t_mlx *tmp)
 {
 	t_view	view;
 
-	view.scale = 35;
+	view.scale = SIZE;
 	if (keycode == KEY_PAD_1)
 	{
 		ft_bzero(tmp->img.data, WIDTH * HEIGHT * (tmp->img.bpp / 8));
@@ -37,7 +37,7 @@ void		change_pro2(int keycode, t_mlx *tmp)
 {
 	t_view	view;
 
-	view.scale = 35;
+	view.scale = SIZE;
 	if (keycode == KEY_PAD_2)
 	{
 		ft_bzero(tmp->img.data, WIDTH * HEIGHT * (tmp->img.bpp / 8));

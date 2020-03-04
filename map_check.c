@@ -6,11 +6,11 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:48:48 by poatmeal          #+#    #+#             */
-/*   Updated: 2020/02/26 15:59:59 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/02/27 12:50:18 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/map.h"
+#include "map.h"
 
 int			check_symb(char *line, t_map *map, size_t y, size_t x)
 {
@@ -81,10 +81,12 @@ int			parser_fdf(int fd, t_map *map, char *argv, char *line)
 	size_t	i;
 
 	n = 0;
-	m = 0;
 	i = 0;
 	if (get_next_line(fd, &line) < 0)
+	{
+		free(line);
 		return (0);
+	}
 	free(line);
 	memory_allocation(fd, map);
 	fd = open(argv, O_RDONLY);
