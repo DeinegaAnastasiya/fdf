@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   memory_allocation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:32:47 by poatmeal          #+#    #+#             */
-/*   Updated: 2020/02/27 11:23:13 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/03/02 22:46:25 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "includes/fdf.h"
 
 void		fill_color(t_data **map, int m, int n)
 {

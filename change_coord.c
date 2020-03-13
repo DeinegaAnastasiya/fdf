@@ -6,7 +6,7 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:14:19 by poatmeal          #+#    #+#             */
-/*   Updated: 2020/02/27 11:19:09 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:28:55 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ void		start_horiz(t_point *ps, t_point *pf, int i, int j)
 	pf->y = i;
 }
 
-void		end_horiz(t_point *pf, int i, int j)
+void		end_horiz(t_point *pf, int i, int j, t_mlx *tmp)
 {
 	pf->x = j;
 	pf->y = i + 1;
+	color_init_v(tmp->map, tmp, i, j);
 }
 
 void		vert_check(t_map *map, int i, int j, t_point *pf)

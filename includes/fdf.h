@@ -6,7 +6,7 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 20:36:06 by rstarfir          #+#    #+#             */
-/*   Updated: 2020/02/27 15:07:41 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/03/05 15:41:30 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,16 @@
 # define HEIGHT 1080
 # define KEY_PAD_1 83
 # define KEY_PAD_2 84
-# define SIZE 5
+# define SIZE 20
+# define ROSE 0xffa5ea
+# define BLYU 0x97b8ff
 
 typedef struct		s_img
 {
 	void			*img_ptr;
 	int				*data;
-	int				clr;
+	double			clr;
+	double			clr2;
 	int				bpp;
 	int				size_l;
 	int				endian;
@@ -67,14 +70,15 @@ typedef struct		s_point
 void				drawline(t_mlx *tmp, t_point ps, t_point pf);
 int					image_init(t_map *map);
 void				draw_matrix(t_map *map, t_mlx *tmp, t_view view);
-void				color_init(t_map *map, t_mlx *tmp, int i, int j);
+void				color_init_h(t_map *map, t_mlx *tmp, int i, int j);
+void				color_init_v(t_map *map, t_mlx *tmp, int i, int j);
 void				change_pro1(int keycode, t_mlx *tmp);
 void				change_pro2(int keycode, t_mlx *tmp);
 int					ft_close(void);
 void				horiz_check(t_map *map, int i, int j, t_point *pf);
 int					start_vert(t_point *ps, int i, int *j);
 void				start_horiz(t_point *ps, t_point *pf, int i, int j);
-void				end_horiz(t_point *pf, int i, int j);
+void				end_horiz(t_point *pf, int i, int j, t_mlx *tmp);
 void				vert_check(t_map *map, int i, int j, t_point *pf);
 
 #endif

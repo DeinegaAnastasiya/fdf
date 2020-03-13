@@ -6,11 +6,11 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:48:48 by poatmeal          #+#    #+#             */
-/*   Updated: 2020/02/27 12:50:18 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/03/11 16:05:52 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "includes/fdf.h"
 
 int			check_symb(char *line, t_map *map, size_t y, size_t x)
 {
@@ -67,6 +67,8 @@ int			check_line(char *line, t_map *map, size_t k, size_t n)
 			c = 0;
 		else if (line[i] == 44 && line[i + 1] == 48 && line[i + 2] == 'x')
 			c = check_symb(&line[i + 3], map, k, n - 1);
+		else
+			c = -1;
 		if (c == (-1))
 			return (0);
 		i = i + c;
