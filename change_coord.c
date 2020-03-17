@@ -6,11 +6,11 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:14:19 by poatmeal          #+#    #+#             */
-/*   Updated: 2020/03/05 16:28:55 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/03/17 13:22:26 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "includes/fdf.h"
 
 void		horiz_check(t_map *map, int i, int j, t_point *pf)
 {
