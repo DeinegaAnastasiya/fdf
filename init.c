@@ -6,7 +6,7 @@
 /*   By: poatmeal <poatmeal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 15:30:33 by poatmeal          #+#    #+#             */
-/*   Updated: 2020/03/17 16:21:26 by poatmeal         ###   ########.fr       */
+/*   Updated: 2020/03/17 16:41:41 by poatmeal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,11 @@ int			key_press(int keycode, t_mlx *tmp)
 	return (0);
 }
 
-double		map_gradient(int sum, int top, int height)
+double		map_gradient(int height)
 {
 	int			color;
-	double		size;
 	
 	color = BLYU;
-	top = 0;
-	sum = 0;
-	size = 1.0;
-	/*if (top == 0)
-		size = 1.0;
-	 else
-	 	size = (double)top / sum;
-	color = get_color(size, DARK, ROSE);*/
 	if (height != 0)
 		color = ROSE;
 	if (height < 0)
@@ -79,13 +70,13 @@ void		color_init_h(t_map *map, t_mlx *tmp, int i, int j)
 	if (map->map[i][j].color != -1)
 		tmp->img.clr = map->map[i][j].color;
 	else
-		tmp->img.clr = map_gradient(map->x, j, map->map[i][j].height);
+		tmp->img.clr = map_gradient(map->map[i][j].height);
 	if (j + 1 < map->x)
 	{
 		if (map->map[i][j + 1].color != -1)
 			tmp->img.clr2 = map->map[i][j + 1].color;
 		else
-			tmp->img.clr2 = map_gradient(map->x, j + 1, map->map[i][j + 1].height);
+			tmp->img.clr2 = map_gradient(map->map[i][j + 1].height);
 	}
 	else
 		tmp->img.clr2 = tmp->img.clr;
@@ -96,13 +87,13 @@ void		color_init_v(t_map *map, t_mlx *tmp, int i, int j)
 	if (map->map[i][j].color != -1)
 		tmp->img.clr = map->map[i][j].color;
 	else
-		tmp->img.clr = map_gradient(map->y, i, map->map[i][j].height);
+		tmp->img.clr = map_gradient(map->map[i][j].height);
 	if (i + 1 < map->y)
 	{
 		if (map->map[i + 1][j].color != -1)
 			tmp->img.clr2 = map->map[i + 1][j].color;
 		else
-			tmp->img.clr2 = map_gradient(map->y, i + 1, map->map[i + 1][j].height);
+			tmp->img.clr2 = map_gradient(map->map[i + 1][j].height);
 	}
 	else
 		tmp->img.clr2 = tmp->img.clr;
